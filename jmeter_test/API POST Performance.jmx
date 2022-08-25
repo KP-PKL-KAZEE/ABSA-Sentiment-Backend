@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Performance Test API Models Sentiment Analysis - Multi Emiten Saham" enabled="true">
+      <stringProp name="TestPlan.comments">API Time Performance Test</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="User" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">200</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="API POST Performance" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">127.0.0.1</stringProp>
+          <stringProp name="HTTPSampler.port">8000</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/predict_sentiment_all_emiten?news=IHSG%20Cenderung%20Lanjutkan%20Rebound%2C%20Cermati%20AKRA%2C%20CTRA%2C%20dan%20MNCN%20JAKARTA%2C%20Investor.id%20-%20Indeks%20harga%20saham%20gabungan%20%28IHSG%29%20Bursa%20Efek%20Indonesia%20%28BEI%29%2C%20Rabu%20%2827%2F4%29%2C%20diprediksi%20bergerak%20mixed%20cenderung%20menguat%20terbatas.%20Proyeksi%20ini%20didasarkan%20hasil%20analisa%20indikator%20MACD%20negatif%20menguat%2C%20indikator%20Stochastic%20netral%20konsolidasi%2C%20serta%20indikator%20RSI%20netral%20konsolidasi.%20Kemarin%2C%20IHSG%20ditutup%20berbalik%20menguat%20sebanyak%2016%2C17%20poin%20%280%2C22%25%29%20menjadi%207.232%2C15.%20Indeks%20bergerak%20dalam%20rentang%207.161%2C66-7.247%2C48%20dengan%20nilai%20transaksi%20Rp%2028%2C02%20triliun.%20Besarnya%20nilai%20transaksi%20dipengaruhi%20adanya%20crossing%20saham%20PT%20Tower%20Bersama%20Infrastructure%20Tbk%20%28TBIG%29%20senilai%20Rp%206%2C37%20triliun%2C%20PT%20Mcash%20Integrasi%20Tbk%20%28MCAS%29%20Rp%203%2C2%20triliun%2C%20PT%20Berkah%20Beton%20Sedaya%20Tbk%20%28BEBS%29%20senilai%20Rp%201%2C95%20triliun.%20Investor%20asing%20juga%20net%20buy%20saham%20hingga%20Rp%201%2C3%20triliun.%20Berikut%20beberapa%20saham%20yang%20layak%20dicermati%20berdasarkan%20perkiraan%20BRI%20Danareksa%20Sekuritas%3A%20AKRA%20Trading%20Buy%20Saham%20AKRA%20diperkirakan%20bergerak%20dalam%20rentang%20Rp%20940%20%E2%80%93%201.060%20setelah%20volume%20transaksi%20meningkat%20di%20atas%20rata-rata%2C%20indikator%20MACD%20positif%20menguat%2C%20indikator%20Stochastic%20netral%20menguat%20menuju%20area%20overbought%20%2C%20dan%20indikator%20RSI%20netral%20menguat%20menuju%20area%20overbought.%20CTRA%20Trading%20Buy%20Saham%20CTRA%20diperkirakan%20bergerak%20dalam%20rentang%20Rp%201.000%20%E2%80%93%201.100%2C%20menyusul%20volume%20transaksi%20stabil%20di%20bawah%20rata-rata%2C%20indikator%20MACD%20positif%20menguat%2C%20indikator%20Stochastic%20netral%20menguat%20menuju%20area%20overbought%20%2C%20serta%20indikator%20RSI%20netral%20menguat%20menuju%20area%20overbought.%20MNCN%20Buy%20On%20Reversal%20Saham%20MNCN%20diperkirakan%20bergerak%20dalam%20rentang%20Rp%201.000%20%E2%80%93%201.050%2C%20seiring%20volume%20transaksi%20stabil%20di%20bawah%20rata-rata%2C%20indikator%20MACD%20positif%20melemah%2C%20indikator%20Stochastic%20netral%20konsolidasi%2C%20serta%20indikator%20RSI%20netral%20konsolidasi.%20Editor%20%3A%20Parluhutan%20%28parluhutan%40investor.co.id%29</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

@@ -16,15 +16,13 @@ def root():
 @app.post("/predict_sentiment_all_emiten")
 def predict_sentiment_all_emiten(news):
     if(not(news)):
-        raise HTTPException(status_code=400, 
-                            detail = "Please Provide a valid text message")
+        raise HTTPException(status_code=400, detail = "Please Provide a valid text message")
 
     return predictor.get_final_sentiment_artikel(news)
 
 @app.post("/predict_sentiment_specific_emiten")
 def predict_sentiment_specific_emiten(news, aspect):
     if(not(news)):
-        raise HTTPException(status_code=400, 
-                            detail = "Please Provide a valid text message")
+        raise HTTPException(status_code=400, detail = "Please Provide a valid text message")
 
     return predictor.get_final_sentiment_artikel(news, aspect)
