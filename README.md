@@ -13,22 +13,18 @@ To get a local copy up and running follow these simple example steps.
 #### Setting Up
 1. Clone repository.
 ```sh
-    git clone https://github.com/dzakirafabillah/ABSA-Sentiment-Project-PKL-KP
+    git clone https://github.com/KP-PKL-KAZEE/ABSA-Sentiment-Backend
 ```
-2. Go to backend directory
-```sh
-    cd backend
-```
-3. Clone additional repository 
+2. Clone additional repository 
 ```sh
     git clone https://github.com/1tangerine1day/Aspect-Term-Extraction-and-Analysis.git
 ``` 
-4. Rename the previous repository to ABSA_SentimentMultiEmiten and save it in the backend folder.
-5. Download the training model and save it in 
+3. Rename the previous repository to ABSA_SentimentMultiEmiten and save it in the backend folder.
+4. Download the training model and save it in 
 ```sh
-    /backend/models
+    /models
 ``` 
-6. Install Requirements 
+5. Install Requirements 
     `pip install -r requirements.txt`
 
 #### Menjalanan API
