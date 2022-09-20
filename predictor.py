@@ -1,3 +1,4 @@
+# Load Libraries.
 import pandas as pd
 import numpy as np
 from transformers import AutoTokenizer
@@ -6,10 +7,12 @@ from torch.nn.utils.rnn import pad_sequence
 from ABSA_SentimentMultiEmiten.model.bert import bert_ABSA
 import preprocessing
 
+# Function Load Model.
 def load_model(model, path):
     model.load_state_dict(torch.load(path, map_location=torch.device('cpu')), strict=False)
     return model
 
+# Define / Initialization from Model.
 DEVICE = torch.device("cpu")
 pretrain_model_name = "indolem/indobert-base-uncased"
 tokenizer = AutoTokenizer.from_pretrained(pretrain_model_name)
@@ -17,6 +20,8 @@ model_ABSA = bert_ABSA(pretrain_model_name).to(DEVICE)
 model_path = './models/bert_ABSA_11.pkl'
 model_ABSA = load_model(model_ABSA, model_path)
 
+# Function Predict Sentiment Analysis
+## Function ini mengembalikan nilai sentiment analisis kalimat (sentence) terhadap emiten (aspect)
 def predict(sentence, aspect, tokenizer):
     t1 = tokenizer.tokenize(sentence)
     t2 = tokenizer.tokenize(aspect)
@@ -38,6 +43,11 @@ def predict(sentence, aspect, tokenizer):
     
     return word_pieces, predictions, outputs
 
+# Function Controller Predict
+# Output this Function :
+## Sentence : Sentence / Kalimat yang displit untuk prediksi.
+## Aspect : Emiten yang di predict.
+## Sentiment : Nilai Sentiment Hasil Function Predict
 def predict_sentence(s, aspect):
   arr_sentence_clean, arr_sentence_dirt  = preprocessing.preprocessing_text(s, aspect)
 
@@ -59,19 +69,22 @@ def predict_sentence(s, aspect):
   
   return output
 
+# Function Get All Datalist Emiten
 def get_data_emiten():
-  #Data emiten ini diambil dari website www.idx.co.id 
-  #dan discrapping pada tanggal 22 Agustus 2022.
+  #Data emiten ini diambil dari website www.idx.co.id dan discrapping pada tanggal 22 Agustus 2022.
   return pd.read_csv("./data/daftar_emiten.csv")
 
+# Function Controller Predict Emiten Saham
 def get_final_sentiment_artikel(artikel, data_emiten=[]):
   output = []
-  
-  if(data_emiten==[]): # 1 input/predict all emiten
-    data_emiten = get_data_emiten().KodeEmiten
-  else: # 2 Input/predict specific emiten
-    data_emiten = data_emiten.split()
 
+  # 1 input/predict all emiten
+  if(data_emiten==[]): 
+    data_emiten = get_data_emiten().KodeEmiten
+  # 2 Input/predict specific emiten
+  else: 
+    data_emiten = data_emiten.split()
+  # Predict Emiten from Input or Datalist
   for emiten in data_emiten:
     if(emiten in artikel):
       output.extend(predict_sentence(artikel, emiten))

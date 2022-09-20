@@ -1,8 +1,11 @@
+# Load Libraries
 import re
 import pandas as pd
 import time
 import numpy as np
 
+# Function Clean Unused Sentence
+## Function ini digunakan untuk menghilangkan sentences yang tidak memiliki aspect / emiten didalamnya.
 def clean_sentences(sentences, aspect):
   new_sentences =[]
   for sentence in sentences:
@@ -16,7 +19,8 @@ def clean_sentences(sentences, aspect):
         new_sentences.append(sentence)
   return new_sentences
 
-## ini kayanya bisa pake regex cuman masi bingung jd pake func dulu :(
+# Function Remove Unused Dots
+## Function ini berfungsi menghilangkan titik (dots) yang tidak memiliki makna pada artikel.
 def remove_unused_dots(arr_of_char):
   i=0
   while i < len(arr_of_char):
@@ -26,6 +30,8 @@ def remove_unused_dots(arr_of_char):
     i = i+1
   return "".join(arr_of_char)
 
+# Function Preprocessing Text.
+## Function ini berfungsi menghilangkan kata yang tidak diperlukan pada artikel
 def preprocessing_text(sentences, aspect):
   # hapus url
   sentences = re.sub('\S+.com|\S+.co.id|\S+.co|\S+.id', '.', sentences)
@@ -43,7 +49,6 @@ def preprocessing_text(sentences, aspect):
   arr_sentence_clean.extend(arr_sentence_dirt)
   i = 0
   while (i < (len(arr_sentence_clean))):
-    # arr_sentence_dirt[i][0] = arr_sentence_dirt[i][0].upper()
     arr_sentence_clean[i] = re.sub(r'[^\w\d\s\.]+', '', arr_sentence_clean[i]) 
     arr_sentence_clean[i] = arr_sentence_clean[i].lower()
     ### Menghapus angka

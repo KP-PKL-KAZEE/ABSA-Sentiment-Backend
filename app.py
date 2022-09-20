@@ -13,6 +13,7 @@ app = FastAPI()
 def root():
     return {"message": "Welcome to Your Sentiment Classification FastAPI"}
 
+# API Route - Predict Sentiment for ALl Emiten. Return JSON.
 @app.post("/predict_sentiment_all_emiten")
 def predict_sentiment_all_emiten(news):
     if(not(news)):
@@ -20,9 +21,12 @@ def predict_sentiment_all_emiten(news):
 
     return predictor.get_final_sentiment_artikel(news)
 
+## API Route - Predict Sentiment for Spesific Emiten. Return JSON.
 @app.post("/predict_sentiment_specific_emiten")
 def predict_sentiment_specific_emiten(news, aspect):
     if(not(news)):
         raise HTTPException(status_code=400, detail = "Please Provide a valid text message")
 
     return predictor.get_final_sentiment_artikel(news, aspect)
+
+# End of Line - App.py #
