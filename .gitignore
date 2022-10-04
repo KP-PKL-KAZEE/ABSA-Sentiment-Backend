@@ -1,3 +1,3 @@
 /fastapi_env
 /models
-/ABSA_SentimentMultiEmiten
+*.pyc
