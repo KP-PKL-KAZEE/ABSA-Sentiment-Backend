@@ -45,10 +45,41 @@ def predict(sentence, aspect, tokenizer):
 
 # Function Controller Predict
 # Output this Function :
-## Sentence : Sentence / Kalimat yang displit untuk prediksi.
+## Sentence : Sentence / Kalimat yang displit untuk prediksi kemudian disatukan per aspact.
 ## Aspect : Emiten yang di predict.
 ## Sentiment : Nilai Sentiment Hasil Function Predict
 def predict_sentence(s, aspect):
+  arr_sentence_clean, arr_sentence_dirt  = preprocessing.preprocessing_text(s, aspect)
+
+  output = []
+  i = 0
+  sentiments = ["Negative", "Neutral", "Positive"]
+  final_sentence_clean = ""
+  final_sentence_dirt = ""
+
+  while (i < (len(arr_sentence_clean))):
+    final_sentence_clean = final_sentence_clean + " " + arr_sentence_clean[i]
+    final_sentence_dirt = final_sentence_dirt + " " + arr_sentence_dirt[i]
+    i = i+1
+
+  x, y, z = predict(final_sentence_clean , aspect, tokenizer)  
+  y_str = str(y)
+  sentiment = sentiments[int(y_str[8])]
+  if final_sentence_clean != "" :
+    output.append({
+      "sentence": final_sentence_dirt.strip(),
+      "aspect": aspect,
+      "sentiment": sentiment
+    })
+  
+  return output
+
+# Function Controller Predict
+# Output this Function :
+## Sentence : Sentence / Kalimat yang displit untuk prediksi.
+## Aspect : Emiten yang di predict.
+## Sentiment : Nilai Sentiment Hasil Function Predict
+def predict_sentence_asli(s, aspect):
   arr_sentence_clean, arr_sentence_dirt  = preprocessing.preprocessing_text(s, aspect)
 
   output = []
